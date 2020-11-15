@@ -37,4 +37,37 @@ Output:
 12
 No Number
  Submit solution!
+ 
+ 
+ Did not getting sumbitted
 */
+
+
+#include <stdio.h>
+
+int main(void) {
+	// your code here
+       unsigned long N, x, y, i;
+        char *mem_space, *data;
+        scanf("%d",&N);
+        mem_space = calloc(N, sizeof(int));
+        if (!mem_space) {
+                printf("unable to allocate memory");
+                exit (1);
+        }
+        data = mem_space;
+        for (i=0; i< N;i++) {
+                scanf("%d %d",&x, &y);
+                *mem_space++ = x;
+                *mem_space++ = y;
+        }
+        for (i=0; i< N;i++) {
+                x = *data++;
+                y = *data++;
+                if ((x==y) || (x==(y+2)))
+        			printf("%d\n", ((x+y)-(x%2)));
+    			else
+        			printf("No Number\n");
+        }
+	return 0;
+}
