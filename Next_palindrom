@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+
+
+int isPalindrome(char str[])
+{
+    int l_idx = 0;
+    int l_str = strlen(str) - 1;
+    int len = l_str;
+    // Keep comparing characters while they are same
+    while (l_str > l_idx)
+    {
+        if (str[l_idx++] != str[l_str--])
+        {
+     //       printf("%s is Not Palindrome\n", str);
+            return 0;
+        }
+    }
+    printf("%s\n", str);
+    return 1;
+}
+
+int main()
+{
+        int N, x, y, i;
+        unsigned int *p,*mem_space, *data;
+        char inp_array[512] ={'0'};
+
+        scanf("%d",&N);
+        p= calloc(N, sizeof(int));
+        mem_space = p;
+        if (!mem_space) {
+                printf("unable to allocate memory");
+                exit (1);
+        }
+        data = mem_space;
+        for (i=0; i< N;i++) {
+                scanf("%d",&x);
+        //      printf("%d %x -- raw\n",x,x);
+                *mem_space++ = x;
+        }
+        for (i=0; i< N;i++) {
+                x = *data;
+                while(1) {
+                        x+=1;
+                //      printf("%d %x - from ptr\n",x,x);
+                        sprintf(inp_array, "%lu",x);
+                //      printf("%s - arrray\n",inp_array);
+                        if(isPalindrome(inp_array)) break;
+                }
+                data++;
+        }
+        free(p);
+        return 0;
+}
